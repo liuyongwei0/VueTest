@@ -19,18 +19,18 @@
     事件处理函数: methods
 -->
 <div id="app">
-  <input type="text" v-model="inputTodo">
-  <ul>
-    <li v-for='todo in todos'>
+  <input type="text" v-model="inputTodo" @keyup.13="addTodo">
+  <ul >
+    <li v-for='todo in todos' >
       <span>{{todo.text}}</span>
-      <button @click="addTodo">x</button>
+      <button @click="deletoItem(todo)">x</button>
     </li>
   </ul>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  /*new Vue({
+  new Vue({
     el : '#app',
     data : {
       todos: [
@@ -40,12 +40,21 @@
     },
     methods: {
       addTodo () {
-        let text = this.inputTodo
-        this.todos.unshift(todo.text)
+        if(this.inputTodo === ''){
+          return
+        }
+        let todo = {text : this.inputTodo}
+        this.todos.unshift(todo)
         this.inputTodo = ''
+      },
+      deletoItem (todo) {
+        if(confirm(`确定要删除${todo.text}这一项？`)){
+          this.todos.$remove(todo)
+        }
+
       }
     }
-  })*/
+  })
 </script>
 </body>
 </html>

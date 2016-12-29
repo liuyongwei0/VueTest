@@ -24,10 +24,27 @@
 -->
 
 <div id="demo">
+  <p class="classA" :class="{classB:isB}">测试v-bind:class 对象语法</p>
+  <!--数组中的classA和classB都默认会解析成变量，因为这是JS语法，当我们需要使用样式表中的样式时，
+  需要把classA和classB定义成字符串，这样它们才会自己去样式表中匹配同名样式进行页面渲染-->
+  <p :class="[classA, 'classB']">测试v-bind:class 对象语法</p>
+
+  <p :style="{color:activeColor, fontSize: fontSize + 'px'}">测试v-bind:style</p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el: '#demo',
+    data () {
+      return {
+        isB :false,
+        activeColor : 'green',
+        fontSize: 50,
+        classA: 'classA'
+      }
+    }
+  })
 </script>
 </body>
 </html>

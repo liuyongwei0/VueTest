@@ -5,7 +5,8 @@
   <title>01_helloVue</title>
 </head>
 <body>
-
+<input type="text" v-model="msg">
+<p>{{msg}}</p>
 <!--
   1. 引入Vue.js
   2. 创建Vue对象
@@ -17,6 +18,16 @@
 
   注意: 需要在webstorm中安装vue.js插件
 -->
-
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+      el:'body',
+      data () {
+        return {
+          msg : ''
+        }
+      }
+    })
+</script>
 </body>
 </html>

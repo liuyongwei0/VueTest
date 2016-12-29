@@ -5,6 +5,7 @@
   <title>03_事件</title>
 </head>
 <body>
+
 <!--
   1. 绑定监听的指令:
     v-on:xxx="函数名或函数调用"
@@ -15,10 +16,23 @@
     }
 -->
 <div id="app">
+  <p v-text="message"></p>
+  <button @click="toReverse">Reverse Message</button>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue ({
+    el: '#app',
+    data : {
+      message: 'hello,vuejs'
+    },
+    methods: {
+      toReverse () {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  })
 </script>
 </body>
 </html>
