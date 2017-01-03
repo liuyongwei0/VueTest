@@ -24,10 +24,19 @@
   v-cloak : 使用它防止闪现表达式, 与css配合: [v-cloak] { display: none }
 -->
 <div id="example">
+  <a :href="url" v-text="msg"></a>
+  <p v-text="url | uppercase"></p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue ({
+    el: '#example',
+    data: {
+      msg: '尚硅谷',
+      url: 'http://www.atguigu.com'
+    }
+  })
 </script>
 </body>
 </html>

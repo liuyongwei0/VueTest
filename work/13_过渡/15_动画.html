@@ -6,10 +6,10 @@
   <style>
     /* 必需 */
     .xxx-transition {
-      transition: all 5s ease;
+      transition: all 0.5s ease;
       height: 30px;
       padding: 10px;
-      background-color: #eee;
+      background-color: yellowgreen;
       overflow: hidden;
     }
 
@@ -24,11 +24,23 @@
 </head>
 <body>
 <div id="demo">
+  <p transition="xxx" v-if="ok">hello react</p>
+  <button @click="toggle">toggle</button>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-
+  new Vue({
+    el: '#demo',
+    data: {
+      ok: true
+    },
+    methods: {
+      toggle () {
+        this.ok = !this.ok
+      }
+    }
+  })
 </script>
 </body>
 </html>

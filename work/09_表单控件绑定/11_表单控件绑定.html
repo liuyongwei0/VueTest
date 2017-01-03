@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <style type="text/css">
+    textarea{
+      resize: none;
+    }
+  </style>
 </head>
 <body>
 <!--
@@ -15,11 +20,72 @@
 3. 延迟指定时间才更新: debounce='1000'
 -->
 <div id="demo">
+  <span>Message is: {{ message }}</span><br>
+  <input type="text" v-model="message"><br>
+  <textarea v-model="message"></textarea>
+
+  <hr>
+  <input type="checkbox" id="checkbox" v-model="checked">
+  <label for="checkbox">{{checked}}</label>
+
+  <hr>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames | json }}</span>
+
+  <hr>
+  <input type="radio" id="female" value="female" v-model="sex">
+  <label for="female">FEMALE</label>
+  <br>
+  <input type="radio" id="male" value="male" v-model="sex">
+  <label for="male">MALE</label>
+  <br>
+  <span>Sex: {{ sex }}</span>
+
+  <hr>
+  <select v-model="selection">
+    <option value="">未选择</option>
+    <option v-for="option in options" :value="option.value">
+      {{ option.text }}
+    </option>
+  </select>
+  <span>selection: {{ selection }}</span>
+
+  <hr>
+  <!-- 在 "change" 而不是 "input" 事件中更新 -->
+  <input v-model="msg" lazy placeholder="失去焦点才更新">
+  <p>输入的数据为: {{msg}}</p>
+  <!--延迟指定时间更新-->
+  <input v-model="msg2" debounce="1000" placeholder="延迟1s更新">
+  <p>输入的数据为: {{msg2}}</p>
 
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el: '#demo',
+    data () {
+      return {
+        message: 'shangguigu',
+        checked:'',
+        checkedNames: [],
+        sex: '',
+        options: [
+          {text: 'One', value: 'A'},
+          {text: 'Two', value: 'B'},
+          {text: 'Three', value: 'C'}
+        ],
+        //为了显示未选择，需要将selection的值和option的value匹配，那么就是'',因为未选择的option的value就为''
+        selection: ''
+      }
+    }
+  })
 </script>
 </body>
 </html>

@@ -24,10 +24,42 @@
 -->
 
 <div id="example">
+  <!--过滤器reverse: 对指定值进行倒序显示-->
+  <p>{{name | reserve}}</p>
+  <p v-text="name | reserve"></p>
+  <br>
+  <!--过滤器wrap: 在指定值的左侧和右侧添加指定的文本-->
+  <span v-text="message | wrap 'before' 'after'"></span>
 </div>
+
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+
+
+  //全局过滤器
+  Vue.filter('wrap', function (value, begin, end) {
+   return begin + value + end
+   })
+  //局部过滤器
+  new Vue ({
+    el: '#example',
+    data: {
+      name: 'tomhanks',
+      message: '尚硅谷'
+    },
+    filters: {
+      //es5
+     /* 'reserve': function (value) {
+      return value.split('').reverse().join('')
+    }*/
+    //es6
+      reserve (value) {
+        return value.split('').reverse().join('')
+      }
+    }
+  })
+
 </script>
 </body>
 </html>

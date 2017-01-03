@@ -14,6 +14,7 @@
   })
   //注册
   Vue.component('my-component', MyComponent)
+
   //定义并注册
   Vue.component('my-component', {
     template: '<div>A custom component!</div>'
@@ -35,7 +36,30 @@
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  //1. 定义注册全局指令(两步走)
+  //定义
+  const MyComponent = Vue.extend({
+    template: '<div>MyComponent comp</div>'
+  })
+  //注册
+  Vue.component({'my-component': MyComponent})
 
+  //定义和注册(就一部）
+  Vue.component({
+    'my-component': {
+      template: '<div>MyComponent comp</div>'
+    }
+  })
+
+  //2. 定义注册局部指令(只能在当前vue的标签中使用)
+  new Vue({
+    el: '#demo',
+    component: {
+        'my-component': {
+            template: '<div>MyComponent comp</div>'
+        }
+    }
+  })
 </script>
 </body>
 </html>

@@ -24,11 +24,31 @@
 -->
 
 <div id="demo">
+  <p  v-my-directive="msg"></p>
+  <p  v-my-directive2="msg"></p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
 
+  Vue.directive('my-directive2', function (value) {
+    this.el.innerText = value.toLowerCase()
+  })
+
+
+  new Vue({
+    el: '#demo',
+    data:{
+      msg: 'AtGuiGu'
+    },
+    directives: {
+      'my-directive' : function (value) {
+        this.el.innerText = value.toUpperCase()
+      }
+    }
+  })
+
 </script>
+
 </body>
 </html>
